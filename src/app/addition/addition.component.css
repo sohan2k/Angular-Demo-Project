@@ -1,0 +1,12 @@
+.test-success{
+    color:chartreuse
+}
+.test-danger{
+    color: crimson;
+}
+
+.card-color{
+    background-color: darkcyan;
+    color: #eff3f6;
+    border: #1976d2;
+  }

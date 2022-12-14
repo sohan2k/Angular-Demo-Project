@@ -1,0 +1,14 @@
+<div>
+    <h2> Add two number</h2>
+</div>
+<div>
+    <input type="number" [(ngModel)]="a"><br>
+    <input type="number" [(ngModel)]="b"><br>
+    <button type="button" (click)="add()">submit</button><br>
+    <h3>={{sum}}</h3>
+</div>
+<!-- card highlight-card card-small -->
+<div class="card-color">
+    <h2> Check Even OR Odd</h2>
+    <h2 [ngClass]="even">={{sum}}</h2>
+</div>

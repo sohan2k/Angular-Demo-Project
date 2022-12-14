@@ -1,0 +1,45 @@
+<p>view works!</p>
+<div class="card">
+    <div class="card-add" align="right">
+        <button >Add Employee</button>
+    </div>
+    <!-- fas fa-user-alt -->
+    <div class="card-table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>sohan</td>
+                    <td>xyz</td>
+                    <td>xyz@Gmail.com</td>
+                    <td>9999</td>
+                    <td>
+                        <a routerLink="/add" routerLinkActive="active" class='fas fa-pen'></a>
+                        <!-- <a  (click)="OnClick()" class='fas fa-pen'></a> -->
+                        <button type="button" class="btn-del fas fa-trash" (click)="openDialog()"></button>
+
+                    </td>
+                </tr>
+            </tbody>
+            <!-- <tr *ngFor="let e of emplist ; index as i">
+                <td>{{i+1}}</td>
+                <td> {{e.name}} </td>
+                <td> {{e.address}} </td>
+                <td> {{e.email}} </td>
+                <td> {{e.phone}} </td>
+                <td><a routerLink="/add" routerLinkActive="active" class='fas fa-pen'></a></td>
+            </tr> -->
+        </table>
+    </div>
+</div>
+

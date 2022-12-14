@@ -1,0 +1,10 @@
+<div>
+    <h2>Table</h2>
+</div>
+<div>
+    <input type="number" [(ngModel)]="n"><br>
+    <div *ngFor="let b of table(); index as i">
+        <h2>{{i}}x{{n}}={{b}}</h2>
+    </div>
+</div>
+
