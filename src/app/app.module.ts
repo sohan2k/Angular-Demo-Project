@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { StatusComponent } from './status/status.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { StatusComponent } from './status/status.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

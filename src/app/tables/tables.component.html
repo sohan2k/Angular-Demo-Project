@@ -1,10 +1,18 @@
-<div>
+<!-- <div>
     <h2>Table</h2>
-</div>
-<div>
-    <input type="number" [(ngModel)]="n"><br>
-    <div *ngFor="let b of table(); index as i">
-        <h2>{{i}}x{{n}}={{b}}</h2>
+</div> -->
+<div class="card text-center" style="padding: 40px;">
+    <h5 class="card-header">Table Count</h5>
+    <div class="card-body">
+        <div class="form-group">
+            <input type="number" [(ngModel)]="n"><br>
+        </div>
+        <div style="font-size: xx-small">
+            <div *ngFor="let b of table(); index as i">
+                <h2>{{i}}x{{n}}={{b}}</h2>
+            </div>
+        </div>
     </div>
 </div>
+
 

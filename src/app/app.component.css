@@ -1,12 +1,17 @@
-.header {
+/* .header {
   overflow: auto;
   background-color: #56c3f9;
-  /* padding: 10px 5px; */
   width: 100%;
+} */
+.header-color {
+  background-color: #56c3f9;
+}
+.nav-item-font{
+  font-weight:bold ;
 }
 
 /* Style the header links */
-.header a {
+/* .header a {
   float: left;
   color: black;
   text-align: center;
@@ -15,23 +20,23 @@
   font-size: 18px;
   line-height: 25px;
   border-radius: 4px;
-}
+} */
 
 
 
 /* Change the background color on mouse-over */
-.header a:hover {
+/* .header a:hover {
   background-color: rgb(31, 170, 251);
   color: black;
-}
+} */
 
 /* Style the active/current link*/
-.header a.active {
+/* .header a.active {
   background-color: dodgerblue;
   color: white;
-}
+} */
 
 /* Float the link section to the right */
-.header-right {
+/* .header-right {
   float: right;
-}
+} */

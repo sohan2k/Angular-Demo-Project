@@ -1,9 +1,13 @@
-<div>
-    <h2>Sort list of Number</h2>
+
+<div class="card text-center " style="padding: 40px;">
+    <h5 class="card-header">Sort list of Number</h5>
+    <div class="card-body">
+        <div>
+            <input type="text" [(ngModel)]="s" data-toggle="tooltip" data-placement="top" title="Add data (Ex- 3,2,8,1)"><br>
+            <button type="button" (click)="get()" >submit</button><br>
+            <h3>{{arr}}</h3>
+        </div>
+    </div>
 </div>
-<div>
-    <input type="text" [(ngModel)]="s"><br>
-    <button type="button" (click)="get()">submit</button><br>
-    <h3>{{arr}}</h3>
-</div>
+
 

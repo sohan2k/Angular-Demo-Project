@@ -1,14 +1,34 @@
-<div>
+<!-- <div>
     <h2> Add two number</h2>
+</div> -->
+<div class="card" style="padding: 20px;">
+    <h5 class="card-header">Add Number and Check Even Odd</h5>
+    <div class="card-body">
+        <div class="card">
+            <h5 class="card-header">Add Number</h5>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>First Number </label>
+                    <input type="number" class="form-control" [(ngModel)]="a"><br>
+                </div>
+                <div class="form-group">
+                    <label>Second Number </label>
+                    <input type="number" class="form-control" [(ngModel)]="b"><br>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="add()" data-container="body" data-toggle="popover" data-placement="right"  title="If Green then Even .If Red then Odd">submit</button><br>
+                <h3>={{sum}}</h3>
+            </div>
+        </div>
+        <!-- card highlight-card card-small -->
+        <div class="card">
+            <h5 class="card-header">Check Even OR Odd</h5>
+            <div class="card-body">
+                <div class="card-color">
+                    <h2> Check Even OR Odd</h2>
+                    <h2 [ngClass]="even">={{sum}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <input type="number" [(ngModel)]="a"><br>
-    <input type="number" [(ngModel)]="b"><br>
-    <button type="button" (click)="add()">submit</button><br>
-    <h3>={{sum}}</h3>
-</div>
-<!-- card highlight-card card-small -->
-<div class="card-color">
-    <h2> Check Even OR Odd</h2>
-    <h2 [ngClass]="even">={{sum}}</h2>
-</div>
+
