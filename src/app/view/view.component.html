@@ -1,5 +1,4 @@
-<p>view works!</p>
-<div class="card">
+<div class="card" style="padding-top: 60px;">
     <div class="card-add" align="right">
         <button >Add Employee</button>
     </div>
@@ -27,6 +26,8 @@
                         <a routerLink="/add" routerLinkActive="active" class='fas fa-pen'></a>
                         <!-- <a  (click)="OnClick()" class='fas fa-pen'></a> -->
                         <button type="button" class="btn-del fas fa-trash" (click)="openDialog()"></button>
+
+                        <button type="button" class="btn-del fas fa-pen" style="padding-left: 10px;" (click)="addEmployee()"></button>
 
                     </td>
                 </tr>

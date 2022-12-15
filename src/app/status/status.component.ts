@@ -1,6 +1,6 @@
 import { NONE_TYPE } from '@angular/compiler';
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-status',
@@ -9,12 +9,15 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class StatusComponent {
   // public isClick=false;
-  public c={
+  public close={
     "close":false
   }
-;
-  constructor(private dialog:MatDialog){}
+  public msg="";
+  constructor(@Inject(MAT_DIALOG_DATA)public data:any){
+    this.msg=data.message
+  }
+
   closeDialog(){
-    this.c["close"]=true;
+    this.close["close"]=true;
   }
 }
