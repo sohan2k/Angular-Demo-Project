@@ -1,6 +1,5 @@
 import { NONE_TYPE } from '@angular/compiler';
-import { Component, Inject } from '@angular/core';
-// import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-status',
@@ -8,7 +7,8 @@ import { Component, Inject } from '@angular/core';
   styleUrls: ['./status.component.css']
 })
 export class StatusComponent {
-  public modalId='delete-modal';
+  public deleteModalId='';
+  public delModalShowName='';
   // public isClick=false;
   // public close={
   //   "close":false
@@ -21,7 +21,25 @@ export class StatusComponent {
   // closeDialog(){
   //   this.close["close"]=true;
   // }
-  // setModalId(modalId : string){
-  //   this.modalId=modalId;
+  constructor(){
+    console.log("status constructor");
+  }
+  public setDeleteModal={
+    id:"",
+    msg:""
+  }
+  
+  set(modalId : string, delMSg : string){
+    this.deleteModalId=modalId;
+    this.delModalShowName=delMSg;
+     console.log(this.deleteModalId)
+     console.log('hello - from-status')
+  }
+  // set(id:string,msg:string){
+  //   this.setDeleteModal.id=id;
+  //   this.setDeleteModal.msg=msg;
+  //   // console.log(this.setDeleteModal)
+  //   console.log('hello')
   // }
+  @ViewChild('delId') delId: ElementRef | undefined;
 }

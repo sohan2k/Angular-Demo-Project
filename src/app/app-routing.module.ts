@@ -5,6 +5,7 @@ import { SortComponent } from './sort/sort.component';
 import { TablesComponent } from './tables/tables.component';
 import { ViewComponent } from './view/view.component';
 import { AddComponent } from './add/add.component';
+import { StatusComponent } from './status/status.component';
 
 const routes: Routes = [
   {path:"addition", component: AdditionComponent},
