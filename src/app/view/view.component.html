@@ -7,7 +7,7 @@
         <ngb-alert #staticAlert *ngIf="alertValue.showAlert" role="alert" [type]="alertValue.alertType" (closed)="alertValue.showAlert">{{alertValue.alertMessage}}</ngb-alert>
         <div class="card-add" align="right" style="padding-bottom: 20px;">
           <!-- <button class="btn btn-lg btn-outline-primary" data-target="#addModal">Add Employee</button> -->
-          <button type="button" class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#addModal">
+          <button type="button" class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#addModal" (click)=" clearField()">
             Add Employee
           </button>
         </div>
@@ -36,7 +36,7 @@
                   <!-- <a routerLink="/add" routerLinkActive="active" class='fas fa-pen'></a> -->
                   <!-- <a  (click)="OnClick()" class='fas fa-pen'></a> -->
                   <!-- <button type="button" class="btn-del fas fa-trash" (click)="openDialog()"></button> -->
-                  <button type="button" class="btn-del fas fa-trash" data-toggle="modal" data-target="#exampleModal"></button>
+                  <button type="button" class="btn-del fas fa-trash" data-toggle="modal" data-target="#exampleModal" ></button>
                   <button type="button" class="btn-del fas fa-pen" style="padding-left: 10px;" (click)="delEmployee()"></button>
                 </td>
               </tr>
@@ -134,7 +134,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="card bg-info text-white">
+        <div class="card ">
           <div class="card-body">
             <div class="container">
               <form #addForm="ngForm" >
@@ -224,21 +224,30 @@
         </button>
       </div>
       <div class="modal-body ">
-          <div class="card bg-info text-white">
+          <div class="card ">
             <div class="card-body">
               <div class="container">
                 <form #updateForm="ngForm">
-                  <!-- <div class="img" style="background-image: url(images/bg.jpg);"></div> -->
-                  <div class="row" align="center">
+                  <!-- image -->
+                  <div class="row profile-img" align="center">
                     <img class="rounded-circle border border-dark" style="width: 95px; height: 95px" alt="avatar1" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" />
                   </div>
-                  <div class="row" align="center">
+                  <!-- id & status -->
+                  <div class="row">
+                    <!-- id -->
+                    <div class="form-group col" align="left">
+                      <label>Id: {{empModel.id}}</label>
+                    </div>
+                    <!-- status -->
                     <div class="form-group col" align="right">
-                      <label>Id: </label>
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="isActive" [(ngModel)]="empModel.isActive">
+                        <label class="custom-control-label" for="customSwitch1">Employee Status</label>
+                      </div>
                     </div>
-                    <div class="form-group col-sm-9" align="left">
+                    <!-- <div class="form-group col-sm-9" align="left">
                       <input disabled type="text" name="id" [(ngModel)]="empModel.id"><br>
-                    </div>
+                    </div> -->
                   </div>
                   <!-- Name -->
                   <div class="form-outline mb-4">
@@ -278,17 +287,11 @@
                       <small class="text-danger" *ngIf="phone.errors.pattern">Phone Number must be 10 digits</small>
                     </div>
                   </div>
-                  <!-- status -->
-                  <div class="row">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="isActive" [(ngModel)]="empModel.isActive">
-                      <label class="custom-control-label" for="customSwitch1">Employee Status</label>
-                    </div>
-                  </div>
-
+                  
+                  
                   <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block mb-4" data-dismiss="modal" data-target="basic-success-example" 
-                (click)="update(updateForm); clearField()">Submit
+                (click)="update(updateForm)">Submit
                 </button>
               
                 <!-- Register buttons -->
@@ -361,98 +364,7 @@ instance.update({ position: 'top-right', });
 </script> -->
 
 
-<!-- form exmpl 2 -->
-<!-- <div class="card-add" align="right" style="padding-bottom: 20px;">
-  <button type="button" class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#test">
-    Test from Employee
-  </button>
-</div> -->
 
-<div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <!-- 2 column grid layout with text inputs for the first and last names -->
-          <div class="form-outline mb-4">
-            <input type="text" id="form3Example3" class="form-control"
-            #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
-            name="name" [(ngModel)]="empModel.name" placeholder="Enter your name" required />
-            <label class="form-label" for="form3Example3">Name</label>
-            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required!!</small>
-          </div>
-        
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" class="form-control" 
-            #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
-            name="email" [(ngModel)]="empModel.email" placeholder="Enter your email" required/>
-            <label class="form-label" for="form3Example3">Email address</label>
-            <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required!!</small>
-          </div>
-        
-          <!-- Address input -->
-          <div class="form-outline mb-4">
-            <input type="textarea" id="form3Example4" class="form-control"
-            #address="ngModel" [class.is-invalid]="address.invalid && address.touched"
-             name="address" [(ngModel)]="empModel.address" placeholder="Enter your address" required/>
-            <label class="form-label" for="form3Example4">Address</label>
-            <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required!!</small>
-          </div>
-
-          <!-- Phone -->
-          <div class="form-outline mb-4">
-            <input type="tel" id="form3Example3" class="form-control"
-            #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" 
-            name="phone" [(ngModel)]="empModel.phone" placeholder="Enter your mobile number" required />
-            <label class="form-label" for="form3Example3">Phone</label>
-            <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
-              <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>
-              <small class="text-danger" *ngIf="phone.errors.pattern">Phone Number must be 10 digits</small>
-            </div>
-          </div>
-        
-          <!-- Checkbox -->
-          <!-- <div class="form-check d-flex justify-content-center mb-4">
-            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-            <label class="form-check-label" for="form2Example33">
-              Subscribe to our newsletter
-            </label>
-          </div> -->
-        
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
-        
-          <!-- Register buttons -->
-          <div class="text-center">
-            <p>or sign up with:</p>
-            <button type="button" class="btn btn-secondary btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
-            </button>
-        
-            <button type="button" class="btn btn-secondary btn-floating mx-1">
-              <i class="fab fa-google"></i>
-            </button>
-        
-            <button type="button" class="btn btn-secondary btn-floating mx-1">
-              <i class="fab fa-twitter"></i>
-            </button>
-        
-            <button type="button" class="btn btn-secondary btn-floating mx-1">
-              <i class="fab fa-github"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
