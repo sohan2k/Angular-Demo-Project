@@ -49,7 +49,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 .tcolor{
   background-color: #33b5e5
 }
+.modal-title{
+  text-align: center;
+  align-tracks: center;
 
+}
 
 /* .form-switch .form-check-input {
   width: 2em;

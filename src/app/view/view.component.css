@@ -2,7 +2,7 @@
     border: 0ch;
     padding: 3px;
 } */
-
+/* table css */
 .table tbody td.status .inactive {
     background: #fdf5dd;
     color: #cfa00c;
@@ -35,3 +35,12 @@
     content: '';
     border-radius: 50%;
 }
+
+/* Form Css */
+
+/* .img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+} */
+

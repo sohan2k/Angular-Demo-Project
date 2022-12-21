@@ -42,7 +42,11 @@
               </tr>
                 <tr *ngFor="let e of emplist ; index as i">
                     <td>{{e.id}}</td>
-                    <td> {{e.name}} </td>
+                    <td>
+                      <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                       style="width: 45px; height: 45px" class="rounded-circle" />
+                       {{e.name}}
+                     </td>
                     <td> {{e.address}} </td>
                     <td> {{e.email}} </td>
                     <td> {{e.phone}} </td>
@@ -123,54 +127,88 @@
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title " id="exampleModalLabel" >Add Employee</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="card">
-            <form #addForm="ngForm" >
-              <div class="row">
-                <div class="form-group col" align="right">
-                  <label>Name: </label>
+        <div class="card bg-info text-white">
+          <div class="card-body">
+            <div class="container">
+              <form #addForm="ngForm" >
+                <!-- Name -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example3" class="form-control"
+                  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
+                  name="name" [(ngModel)]="empModel.name" placeholder="Enter your name" required />
+                  <label class="form-label" for="form3Example3">Name</label>
+                  <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required!!</small>
                 </div>
-                <div class="form-group col-sm-9" align="left">
-                  <input type="text" #name="ngModel" [class.is-inValid]="name.invalid && name.touched" name="name" class="form-control" [(ngModel)]="empModel.name"><br>
+              
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3" class="form-control" 
+                  #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
+                  name="email" [(ngModel)]="empModel.email" placeholder="Enter your email" required/>
+                  <label class="form-label" for="form3Example3">Email address</label>
+                  <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required!!</small>
                 </div>
-              </div>
-              <div class="row">
-                <div class="form-group col" align="right">
-                  <label>Address: </label>
+              
+                <!-- Address input -->
+                <div class="form-outline mb-4">
+                  <input type="textarea" id="form3Example4" class="form-control"
+                  #address="ngModel" [class.is-invalid]="address.invalid && address.touched"
+                   name="address" [(ngModel)]="empModel.address" placeholder="Enter your address" required/>
+                  <label class="form-label" for="form3Example4">Address</label>
+                  <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required!!</small>
                 </div>
-                <div class="form-group col-sm-9" align="left">
-                  <input type="text" #address="ngModel" [class.is-inValid]="address.invalid" name="address" class="form-control" [(ngModel)]="empModel.address"><br>
+      
+                <!-- Phone -->
+                <div class="form-outline mb-4">
+                  <input type="tel" id="form3Example3" class="form-control"
+                  #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" 
+                  name="phone" [(ngModel)]="empModel.phone" placeholder="Enter your mobile number" required />
+                  <label class="form-label" for="form3Example3">Phone</label>
+                  <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+                    <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>
+                    <small class="text-danger" *ngIf="phone.errors.pattern">Phone Number must be 10 digits</small>
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="form-group col" align="right">
-                  <label>Email: </label>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-success btn-block mb-4 border border-dark" data-dismiss="modal" data-target="basic-success-example" 
+                (click)="onSubmit(addForm); clearField()">Submit
+                </button>
+              
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>or sign up with:</p>
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                  </button>
                 </div>
-                <div class="form-group col-sm-9" align="left">
-                    <input type="text" #email="ngModel" [class.is-inValid]="email.invalid" name="email" class="form-control" [(ngModel)]="empModel.email"><br>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col" align="right">
-                  <label>Phone: </label>
-                </div>
-                  <div class="form-group col-sm-9" align="left">
-                  <input type="text" #phone="ngModel" pattern="^\d{10}$" [class.is-inValid]="phone.invalid" name="phone" class="form-control" [(ngModel)]="empModel.phone"><br>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button"  class="btn btn-primary" data-dismiss="modal" data-target="basic-success-example" (click)="onSubmit(addForm)">Submit</button>
-      </div>
+        <button type="button"  class="btn btn-primary" data-dismiss="modal" data-target="basic-success-example" (click)="onSubmit(addForm); clearField()">Submit</button>
+      </div> -->
     </div>
   </div>
 </div>
@@ -179,81 +217,113 @@
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-info text-white">
         <h5 class="modal-title" id="exampleModalLabel">Update Employee</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-          <div class="card">
+      <div class="modal-body ">
+          <div class="card bg-info text-white">
             <div class="card-body">
               <div class="container">
                 <form #updateForm="ngForm">
+                  <!-- <div class="img" style="background-image: url(images/bg.jpg);"></div> -->
+                  <div class="row" align="center">
+                    <img class="rounded-circle border border-dark" style="width: 95px; height: 95px" alt="avatar1" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" />
+                  </div>
                   <div class="row" align="center">
                     <div class="form-group col" align="right">
                       <label>Id: </label>
                     </div>
                     <div class="form-group col-sm-9" align="left">
-                      <input type="text" name="id" [(ngModel)]="empModel.id"><br>
+                      <input disabled type="text" name="id" [(ngModel)]="empModel.id"><br>
                     </div>
                   </div>
+                  <!-- Name -->
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form3Example3" class="form-control"
+                    #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
+                    name="name" [(ngModel)]="empModel.name" placeholder="Enter your name" required />
+                    <label class="form-label" for="form3Example3">Name</label>
+                    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required!!</small>
+                  </div>
+                
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form3Example3" class="form-control" 
+                    #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
+                    name="email" [(ngModel)]="empModel.email" placeholder="Enter your email" required/>
+                    <label class="form-label" for="form3Example3">Email address</label>
+                    <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required!!</small>
+                  </div>
+                
+                  <!-- Address input -->
+                  <div class="form-outline mb-4">
+                    <input type="textarea" id="form3Example4" class="form-control"
+                    #address="ngModel" [class.is-invalid]="address.invalid && address.touched"
+                     name="address" [(ngModel)]="empModel.address" placeholder="Enter your address" required/>
+                    <label class="form-label" for="form3Example4">Address</label>
+                    <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required!!</small>
+                  </div>
+        
+                  <!-- Phone -->
+                  <div class="form-outline mb-4">
+                    <input type="tel" id="form3Example3" class="form-control"
+                    #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" 
+                    name="phone" [(ngModel)]="empModel.phone" placeholder="Enter your mobile number" required />
+                    <label class="form-label" for="form3Example3">Phone</label>
+                    <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+                      <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>
+                      <small class="text-danger" *ngIf="phone.errors.pattern">Phone Number must be 10 digits</small>
+                    </div>
+                  </div>
+                  <!-- status -->
                   <div class="row">
-                    <div class="form-group col" align="right">
-                      <label>Name: </label>
-                    </div>
-                    <div class="form-group col-sm-9" align="left">
-                      <input type="text" name="name" [(ngModel)]="empModel.name"><br>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="isActive" [(ngModel)]="empModel.isActive">
+                      <label class="custom-control-label" for="customSwitch1">Employee Status</label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="form-group col" align="right">
-                      <label>Address: </label>
-                    </div>
-                    <div class="form-group col-sm-9" align="left">
-                      <input type="text" name="address" [(ngModel)]="empModel.address"><br>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col" align="right">
-                      <label>Email: </label>
-                    </div>
-                    <div class="form-group col-sm-9" align="left">
-                        <input type="text" name="email" [(ngModel)]="empModel.email"><br>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col" align="right">
-                      <label>Phone: </label>
-                    </div>
-                      <div class="form-group col-sm-9" align="left">
-                      <input type="text" name="phone" [(ngModel)]="empModel.phone"><br>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input"  type="checkbox" name="isActive" [(ngModel)]="empModel.isActive">
-                      <!-- <input class="form-check-input" type="checkbox" data-toggle="switchbutton" checked data-size="xs" name="isActive" [(ngModel)]="empModel.isActive"> -->
-                      <label class="form-check-label">
-                        Employee Status
-                      </label>
-                    </div>
-                  </div>
+
+                  <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4" data-dismiss="modal" data-target="basic-success-example" 
+                (click)="update(updateForm); clearField()">Submit
+                </button>
+              
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>or sign up with:</p>
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+              
+                  <button type="button" class="btn btn-secondary btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                  </button>
+                </div>
                 </form>
               </div>
             </div>
           </div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update(updateForm)">Submit</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
 
 <!-- test toast -->
-
 <!-- <div class="toast fade mx-auto toast-success toast-fixed hide" id="basic-success-example" role="alert" aria-live="assertive" aria-atomic="true" data-mdb-autohide="true" data-mdb-delay="2000" data-mdb-position="top-right" data-mdb-append-to-body="true" data-mdb-stacking="true" data-mdb-width="350px" data-mdb-color="success" style="width: 350px; display: none; top: 10px; right: 10px; bottom: unset; left: unset; transform: unset;">
   <div class="toast-header toast-success">
     <strong class="me-auto">MDBootstrap</strong>
@@ -289,3 +359,102 @@ mdb.Toast.getInstance(document.getElementById('position-example-toast'));
 instance.update({ position: 'top-right', });
 
 </script> -->
+
+
+<!-- form exmpl 2 -->
+<!-- <div class="card-add" align="right" style="padding-bottom: 20px;">
+  <button type="button" class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#test">
+    Test from Employee
+  </button>
+</div> -->
+
+<div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+          <div class="form-outline mb-4">
+            <input type="text" id="form3Example3" class="form-control"
+            #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
+            name="name" [(ngModel)]="empModel.name" placeholder="Enter your name" required />
+            <label class="form-label" for="form3Example3">Name</label>
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required!!</small>
+          </div>
+        
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="form3Example3" class="form-control" 
+            #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
+            name="email" [(ngModel)]="empModel.email" placeholder="Enter your email" required/>
+            <label class="form-label" for="form3Example3">Email address</label>
+            <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required!!</small>
+          </div>
+        
+          <!-- Address input -->
+          <div class="form-outline mb-4">
+            <input type="textarea" id="form3Example4" class="form-control"
+            #address="ngModel" [class.is-invalid]="address.invalid && address.touched"
+             name="address" [(ngModel)]="empModel.address" placeholder="Enter your address" required/>
+            <label class="form-label" for="form3Example4">Address</label>
+            <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required!!</small>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-outline mb-4">
+            <input type="tel" id="form3Example3" class="form-control"
+            #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" 
+            name="phone" [(ngModel)]="empModel.phone" placeholder="Enter your mobile number" required />
+            <label class="form-label" for="form3Example3">Phone</label>
+            <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+              <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>
+              <small class="text-danger" *ngIf="phone.errors.pattern">Phone Number must be 10 digits</small>
+            </div>
+          </div>
+        
+          <!-- Checkbox -->
+          <!-- <div class="form-check d-flex justify-content-center mb-4">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+            <label class="form-check-label" for="form2Example33">
+              Subscribe to our newsletter
+            </label>
+          </div> -->
+        
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+        
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>or sign up with:</p>
+            <button type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+        
+            <button type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-google"></i>
+            </button>
+        
+            <button type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-twitter"></i>
+            </button>
+        
+            <button type="button" class="btn btn-secondary btn-floating mx-1">
+              <i class="fab fa-github"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

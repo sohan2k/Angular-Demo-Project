@@ -89,11 +89,11 @@ export class ViewComponent {
     }
     });
   }
-  // clearField(){
-  //   this.name="";        //
-  //   this.address="";    // property
-  //   this.email= "";      //
-  //   this.phone= "";     
-  // }
+  clearField(){
+    this.empModel.name="";        //
+    this.empModel.address="";    // property
+    this.empModel.email= "";      //
+    this.empModel.phone= "";     
+  }
   
 }
