@@ -7,7 +7,7 @@
         <ngb-alert #staticAlert *ngIf="alertValue.showAlert" role="alert" [type]="alertValue.alertType" (closed)="alertValue.showAlert">{{alertValue.alertMessage}}</ngb-alert>
         <div class="card-add" align="right" style="padding-bottom: 20px;">
           <!-- <button class="btn btn-lg btn-outline-primary" data-target="#addModal">Add Employee</button> -->
-          <button type="button" class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#addModal" (click)=" clearField()">
+          <button type="button" class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#addModal" >
             Add Employee
           </button>
         </div>
@@ -142,7 +142,7 @@
                 <div class="form-outline mb-4">
                   <input type="text" id="form3Example3" class="form-control"
                   #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
-                  name="name" [(ngModel)]="empModel.name" placeholder="Enter your name" required />
+                  name="name" [ngModel]="empModel.name" placeholder="Enter your name" required />
                   <label class="form-label" for="form3Example3">Name</label>
                   <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required!!</small>
                 </div>
@@ -151,7 +151,7 @@
                 <div class="form-outline mb-4">
                   <input type="email" id="form3Example3" class="form-control" 
                   #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
-                  name="email" [(ngModel)]="empModel.email" placeholder="Enter your email" required/>
+                  name="email" [ngModel]="empModel.email" placeholder="Enter your email" required/>
                   <label class="form-label" for="form3Example3">Email address</label>
                   <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required!!</small>
                 </div>
@@ -160,7 +160,7 @@
                 <div class="form-outline mb-4">
                   <input type="textarea" id="form3Example4" class="form-control"
                   #address="ngModel" [class.is-invalid]="address.invalid && address.touched"
-                   name="address" [(ngModel)]="empModel.address" placeholder="Enter your address" required/>
+                   name="address" [ngModel]="empModel.address" placeholder="Enter your address" required/>
                   <label class="form-label" for="form3Example4">Address</label>
                   <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required!!</small>
                 </div>
@@ -169,7 +169,7 @@
                 <div class="form-outline mb-4">
                   <input type="tel" id="form3Example3" class="form-control"
                   #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" 
-                  name="phone" [(ngModel)]="empModel.phone" placeholder="Enter your mobile number" required />
+                  name="phone" [ngModel]="empModel.phone" placeholder="Enter your mobile number" required />
                   <label class="form-label" for="form3Example3">Phone</label>
                   <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
                     <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>
@@ -178,7 +178,7 @@
                 </div>
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-success btn-block mb-4 border border-dark" data-dismiss="modal" data-target="basic-success-example" 
-                (click)="onSubmit(addForm); clearField()">Submit
+                (click)="onSubmit(addForm)">Submit
                 </button>
               
                 <!-- Register buttons -->
@@ -237,6 +237,7 @@
                     <!-- id -->
                     <div class="form-group col" align="left">
                       <label>Id: {{empModel.id}}</label>
+                      <input type="text" disabled hidden class="form-control" #name="ngModel" name="id" [(ngModel)]="empModel.id" />
                     </div>
                     <!-- status -->
                     <div class="form-group col" align="right">
@@ -253,7 +254,7 @@
                   <div class="form-outline mb-4">
                     <input type="text" id="form3Example3" class="form-control"
                     #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
-                    name="name" [(ngModel)]="empModel.name" placeholder="Enter your name" required />
+                    name="name" [ngModel]="empModel.name" placeholder="Enter your name" required />
                     <label class="form-label" for="form3Example3">Name</label>
                     <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required!!</small>
                   </div>
@@ -262,7 +263,7 @@
                   <div class="form-outline mb-4">
                     <input type="email" id="form3Example3" class="form-control" 
                     #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
-                    name="email" [(ngModel)]="empModel.email" placeholder="Enter your email" required/>
+                    name="email" [ngModel]="empModel.email" placeholder="Enter your email" required/>
                     <label class="form-label" for="form3Example3">Email address</label>
                     <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required!!</small>
                   </div>
@@ -271,7 +272,7 @@
                   <div class="form-outline mb-4">
                     <input type="textarea" id="form3Example4" class="form-control"
                     #address="ngModel" [class.is-invalid]="address.invalid && address.touched"
-                     name="address" [(ngModel)]="empModel.address" placeholder="Enter your address" required/>
+                     name="address" [ngModel]="empModel.address" placeholder="Enter your address" required/>
                     <label class="form-label" for="form3Example4">Address</label>
                     <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required!!</small>
                   </div>
@@ -280,7 +281,7 @@
                   <div class="form-outline mb-4">
                     <input type="tel" id="form3Example3" class="form-control"
                     #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" 
-                    name="phone" [(ngModel)]="empModel.phone" placeholder="Enter your mobile number" required />
+                    name="phone" [ngModel]="empModel.phone" placeholder="Enter your mobile number" required />
                     <label class="form-label" for="form3Example3">Phone</label>
                     <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
                       <small class="text-danger" *ngIf="phone.errors.required">Phone number is required</small>

@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class TablesComponent {
   public n="";
-  public res=[];
 
   table(){
     let t=Number(this.n);
